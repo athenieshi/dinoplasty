@@ -1,8 +1,9 @@
 const app = {
  max: 0,
- init(formSelector) {
+ init(selectors) {
     this.max = 0
-    document.querySelector(formSelector).addEventListener('submit', this.addDino.bind(this))
+    this.list = document.querySelector(selectors.listSelector)
+    document.querySelector(selectors.formSelector).addEventListener('submit', this.addDino.bind(this))
  },   
 
  addDino(ev) {
@@ -13,9 +14,20 @@ const app = {
       name: ev.target.dinoName.value, 
     }
 
-    console.log(dino.name, dino.id)
+    const listItem = this.renderListItem(dino)
+    this.list.appendChild(listItem)
+
     ++ this.max
  },
+
+ renderListItem(dino) {
+    const item = document.createElement('li')
+    item.textContent = dino.name
+    return item
+ }
 }
 
-app.init('#dino-form')
+app.init({
+    formSelector: '#dino-form',
+    listSelector: '#dino-list',
+})
