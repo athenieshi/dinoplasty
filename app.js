@@ -29,6 +29,8 @@ const app = {
     const item = document.createElement('li')
     item.classList.add('dino')
 
+    item.dataset = dino.id
+    
     item.textContent = dino.name
 
     const remove = document.createElement('button')
