@@ -3,8 +3,13 @@ const app = {
  init(selectors) {
     this.dino =[]
     this.max = 0
-    this.list = document.querySelector(selectors.listSelector)
-    document.querySelector(selectors.formSelector).addEventListener('submit', this.addDino.bind(this))
+    this.list = document
+      .querySelector(selectors.listSelector)
+    this.template = document
+      .querySelector(selectors.templateSelector)
+    document
+      .querySelector(selectors.formSelector)
+      .addEventListener('submit', this.addDino.bind(this))
 
  },   
 
@@ -30,7 +35,7 @@ const app = {
     item.classList.add('dino')
 
     item.dataset = dino.id
-    
+
     item.textContent = dino.name
 
     const remove = document.createElement('button')
@@ -63,4 +68,5 @@ const app = {
 app.init({
     formSelector: '#dino-form',
     listSelector: '#dino-list',
+    templateSelector: '.dino.template',
 })

@@ -28,3 +28,6 @@
     background-color: yellow;
 }
 
+.template {
+    visibility: hidden;
+}
