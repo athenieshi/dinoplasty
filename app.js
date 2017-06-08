@@ -5,6 +5,7 @@ const app = {
     this.max = 0
     this.list = document.querySelector(selectors.listSelector)
     document.querySelector(selectors.formSelector).addEventListener('submit', this.addDino.bind(this))
+
  },   
 
  addDino(ev) {
@@ -21,6 +22,7 @@ const app = {
     console.log(this.dino)
 
     ++ this.max
+    ev.target.reset()
  },
 
  renderListItem(dino) {
