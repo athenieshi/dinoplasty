@@ -25,6 +25,8 @@ const app = {
 
  renderListItem(dino) {
     const item = document.createElement('li')
+    item.classList.add('dino')
+
     item.textContent = dino.name
 
     const remove = document.createElement('button')
@@ -44,12 +46,13 @@ const app = {
 
   removeDino(ev) {
     const btn = ev.target
-    btn.closest('.dino').remove(this.dino)
+    btn.closest('.dino').remove()
   },
 
   promoteDino(ev) {
     const btn = ev.target
-    btn.closest('.dino').promote(this.dino)
+    const promoteListItem = btn.closest('.dino')
+    
   },
 }
 

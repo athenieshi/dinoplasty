@@ -8,6 +8,7 @@
     display: inline-block;
     font-size: 16px;
     float: right;
+    border: 1px solid red;
 }
 
 #promoteDino {
@@ -20,4 +21,10 @@
     display: inline-block;
     font-size: 16px;
     float: right;
+    border: 1px solid green;
 }
+
+#promoted {
+    background-color: yellow;
+}
+
