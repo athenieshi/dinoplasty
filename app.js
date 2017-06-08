@@ -1,7 +1,81 @@
+// const app = {
+//  max: 0,
+//  init(selectors) {
+//     this.dino =[]
+//     this.max = 0
+//     this.list = document
+//       .querySelector(selectors.listSelector)
+//     this.template = document
+//       .querySelector(selectors.templateSelector)
+//     document
+//       .querySelector(selectors.formSelector)
+//       .addEventListener('submit', this.addDino.bind(this))
+
+//  },   
+
+//  addDino(ev) {
+//     ev.preventDefault()
+
+//     const dino = {
+//       id: this.max + 1,
+//       name: ev.target.dinoName.value, 
+//     }
+
+//     const listItem = this.renderListItem(dino)
+//     this.list.insertBefore(listItem, this.list.firstChild)
+   
+//     this.dino.push(dino)
+
+//     ++ this.max
+//     ev.target.reset()
+//  },
+
+//  renderListItem(dino) {
+//     const item = this.template.cloneNode()
+
+//     const item = document.createElement('li')
+//     item.classList.add('dino')
+
+//     item.dataset = dino.id
+
+//     item.textContent = dino.name
+
+//     const remove = document.createElement('button')
+//     remove.textContent = 'remove'
+//     remove.id="removeDino"
+//     item.appendChild(remove)
+//     remove.addEventListener('click', this.removeDino)
+
+//     const promote = document.createElement('button')
+//     promote.id = "promoteDino"    
+//     promote.textContent = 'promote'
+//     item.appendChild(promote)
+//     promote.addEventListener('click', this.promoteDino)
+
+//     return item
+//  },
+
+//   removeDino(ev) {
+//     const btn = ev.target
+//     btn.closest('.dino').remove()
+//   },
+
+//   promoteDino(ev) {
+//     const btn = ev.target
+//     const promoteListItem = btn.closest('.dino')
+    
+//   },
+// }
+
+// app.init({
+//     formSelector: '#dino-form',
+//     listSelector: '#dino-list',
+//     templateSelector: '.dino.template',
+// })
+
 const app = {
- max: 0,
- init(selectors) {
-    this.dino =[]
+  init(selectors) {
+    this.dinos = []
     this.max = 0
     this.list = document
       .querySelector(selectors.listSelector)
@@ -10,63 +84,46 @@ const app = {
     document
       .querySelector(selectors.formSelector)
       .addEventListener('submit', this.addDino.bind(this))
+  },
 
- },   
-
- addDino(ev) {
+  addDino(ev) {
     ev.preventDefault()
 
     const dino = {
       id: this.max + 1,
-      name: ev.target.dinoName.value, 
+      name: ev.target.dinoName.value,
     }
 
     const listItem = this.renderListItem(dino)
     this.list.insertBefore(listItem, this.list.firstChild)
-   
-    this.dino.push(dino)
+
+    this.dinos.unshift(dino)
 
     ++ this.max
     ev.target.reset()
- },
+  },
 
- renderListItem(dino) {
-    const item = document.createElement('li')
-    item.classList.add('dino')
+  renderListItem(dino) {
+    const item = this.template.cloneNode(true)
+    item.classList.remove('template')
+    item.dataset.id = dino.id
 
-    item.dataset = dino.id
-
-    item.textContent = dino.name
-
-    const remove = document.createElement('button')
-    remove.textContent = 'remove'
-    remove.id="removeDino"
-    item.appendChild(remove)
-    remove.addEventListener('click', this.removeDino)
-
-    const promote = document.createElement('button')
-    promote.id = "promoteDino"    
-    promote.textContent = 'promote'
-    item.appendChild(promote)
-    promote.addEventListener('click', this.promoteDino)
+    item
+      .querySelector('.dino-name')
+      .textContent = dino.name
 
     return item
- },
-
-  removeDino(ev) {
-    const btn = ev.target
-    btn.closest('.dino').remove()
-  },
-
-  promoteDino(ev) {
-    const btn = ev.target
-    const promoteListItem = btn.closest('.dino')
-    
-  },
+  }
 }
 
 app.init({
-    formSelector: '#dino-form',
-    listSelector: '#dino-list',
-    templateSelector: '.dino.template',
+  formSelector: '#dino-form',
+  listSelector: '#dino-list',
+  templateSelector: '.dino.template',
+})
+
+app.init({
+  formSelector: '#dino-form',
+  listSelector: '#dino-list',
+  templateSelector: '.dino.template',
 })
