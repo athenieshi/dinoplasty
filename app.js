@@ -17,9 +17,9 @@ const app = {
     }
 
     const listItem = this.renderListItem(dino)
-    this.list.appendChild(listItem)
+    this.list.insertBefore(listItem, this.list.firstChild)
+   
     this.dino.push(dino)
-    console.log(this.dino)
 
     ++ this.max
     ev.target.reset()
