@@ -24,10 +24,11 @@
     border: 1px solid green;
 }
 
-#promoted {
-    background-color: yellow;
-}
 
 .template {
     visibility: hidden;
+}
+
+.actions {
+    float: right;
 }
