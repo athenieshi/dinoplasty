@@ -72,7 +72,6 @@
 //     listSelector: '#dino-list',
 //     templateSelector: '.dino.template',
 // })
-
 const app = {
   init(selectors) {
     this.dinos = []
@@ -98,9 +97,15 @@ const app = {
     this.list.insertBefore(listItem, this.list.firstChild)
 
     this.dinos.unshift(dino)
+    this.save()
 
     ++ this.max
     ev.target.reset()
+  },
+
+  save() {
+    localStorage
+      .setItem('dinos', JSON.stringify(this.dinos))
   },
 
   renderListItem(dino) {
@@ -130,6 +135,8 @@ const app = {
         break;
       }
     }
+
+    this.save()
   },
 }
 
