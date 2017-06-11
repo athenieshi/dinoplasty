@@ -126,9 +126,18 @@ const app = {
     ev.target.reset()
   },
 
+
   save() {
+    const listItems = this.list.children
+    for (let i=0; i < listItems.length; i++) {
+      const listItem = listItems[i]
+      this.dinos[i].id = i
+      listItem.dataset.id = this.dinos[i].id
+      console.log(i)
+    }
     localStorage
       .setItem('dinos', JSON.stringify(this.dinos))
+    
   },
 
   renderListItem(dino) {
