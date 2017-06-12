@@ -396,7 +396,7 @@ class App {
   }
 }
 
-const app = new App({
+new App({
   formSelector: '#dino-form',
   listSelector: '#dino-list',
   templateSelector: '.dino.template',
