@@ -118,7 +118,7 @@ const app = {
 
     const dino = {
       id: this.max + 1,
-      name: ev.target.dinoName.value,
+      name: ev.target.dinoName.value, color: ev.target.dinoColor.value,
     }
 
     this.addDino(dino)
@@ -148,7 +148,9 @@ const app = {
     item
       .querySelector('.dino-name')
       .textContent = dino.name
-
+    item
+      .querySelector('.dino-color')
+      .textContent = dino.color
     item
       .querySelector('button.remove')
       .addEventListener('click', this.removeDino.bind(this))
