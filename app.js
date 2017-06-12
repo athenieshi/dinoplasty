@@ -73,6 +73,136 @@
 //     templateSelector: '.dino.template',
 // })
 
+
+
+//NEW CODE UPDATE
+
+
+
+// const app = {
+//   init(selectors) {
+//     this.dinos = []
+//     this.max = 0
+//     this.list = document
+//       .querySelector(selectors.listSelector)
+//     this.template = document
+//       .querySelector(selectors.templateSelector)
+//     document
+//       .querySelector(selectors.formSelector)
+//       .addEventListener('submit', this.addDinoFromForm.bind(this))
+
+//     this.load()
+//   },
+
+//   load() {
+//     // load the JSON from localStorage
+//     const dinoJSON = localStorage.getItem('dinos')
+
+//     // convert the JSON back into an array
+//     const dinoArray = JSON.parse(dinoJSON)
+
+//     // set this.dinos with the dinos from that array
+//     if (dinoArray) {
+//       dinoArray
+//         .reverse()
+//         .map(this.addDino.bind(this))
+//     }
+//   },
+
+//   addDino(dino) {
+//     const listItem = this.renderListItem(dino)
+//     this.list.insertBefore(listItem, this.list.firstChild)
+
+//     this.dinos.unshift(dino)
+//     this.save()
+
+//     ++ this.max
+//   },
+
+//   addDinoFromForm(ev) {
+//     ev.preventDefault()
+
+//     const dino = {
+//       id: this.max + 1,
+//       name: ev.target.dinoName.value, color: ev.target.dinoColor.value,
+//     }
+
+//     this.addDino(dino)
+    
+//     ev.target.reset()
+//   },
+
+
+//   save() {
+//     const listItems = this.list.children
+//     for (let i=0; i < listItems.length; i++) {
+//       const listItem = listItems[i]
+//       this.dinos[i].id = i
+//       listItem.dataset.id = this.dinos[i].id
+//     }
+//     localStorage
+//       .setItem('dinos', JSON.stringify(this.dinos))
+    
+//   },
+
+//   renderListItem(dino) {
+//     const item = this.template.cloneNode(true)
+//     item.classList.remove('template')
+//     item.dataset.id = dino.id
+
+//     item
+//       .querySelector('.dino-name')
+//       .textContent = dino.name
+
+//       if (dino.fave) {
+//         item.classList.add('fave')
+//       }
+//     item
+//       .querySelector('.dino-color')
+//       .textContent = dino.color
+//     item
+//       .querySelector('button.remove')
+//       .addEventListener('click', this.removeDino.bind(this))
+//     item
+//       .querySelector('button.fave')
+//       .addEventListener('click', this.faveDino.bind(this, dino))
+//     return item
+//   },
+
+//    faveDino(dino, ev){
+    
+//     const listeItem = ev.target.closest('.dino')
+
+//     if(dino.fave)
+//     listItem.classList.add('fave')
+
+    
+//     this.save()
+//   },
+
+//   removeDino(ev) {
+//     const listItem = ev.target.closest('.dino')
+//     listItem.remove()
+
+//     for (let i = 0; i < this.dinos.length; i++) {
+//       const currentId = this.dinos[i].id.toString()
+//       if (listItem.dataset.id === currentId) {
+//         this.dinos.splice(i, 1)
+//         break;
+//       }
+//     }
+
+
+//     this.save()
+//   },
+// }
+
+// app.init({
+//   formSelector: '#dino-form',
+//   listSelector: '#dino-list',
+//   templateSelector: '.dino.template',
+// })
+
 const app = {
   init(selectors) {
     this.dinos = []
@@ -118,7 +248,8 @@ const app = {
 
     const dino = {
       id: this.max + 1,
-      name: ev.target.dinoName.value, color: ev.target.dinoColor.value,
+      name: ev.target.dinoName.value,
+      fav: false,
     }
 
     this.addDino(dino)
@@ -126,18 +257,9 @@ const app = {
     ev.target.reset()
   },
 
-
   save() {
-    const listItems = this.list.children
-    for (let i=0; i < listItems.length; i++) {
-      const listItem = listItems[i]
-      this.dinos[i].id = i
-      listItem.dataset.id = this.dinos[i].id
-      console.log(i)
-    }
     localStorage
       .setItem('dinos', JSON.stringify(this.dinos))
-    
   },
 
   renderListItem(dino) {
@@ -148,14 +270,32 @@ const app = {
     item
       .querySelector('.dino-name')
       .textContent = dino.name
-    item
-      .querySelector('.dino-color')
-      .textContent = dino.color
+
+    if (dino.fav) {
+      item.classList.add('fav')
+    }
+
     item
       .querySelector('button.remove')
       .addEventListener('click', this.removeDino.bind(this))
+    item
+      .querySelector('button.fav')
+      .addEventListener('click', this.favDino.bind(this, dino))
 
     return item
+  },
+
+  favDino(dino, ev) {
+    const listItem = ev.target.closest('.dino')
+    dino.fav = !dino.fav
+
+    if (dino.fav) {
+      listItem.classList.add('fav')
+    } else {
+      listItem.classList.remove('fav')
+    }
+
+    this.save()
   },
 
   removeDino(ev) {

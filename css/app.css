@@ -24,30 +24,35 @@
     border: 1px solid green;
 }*/
 
-
 .dino.template {
-    visibility: hidden;
+  display: none;
 }
 
 .actions {
-    float: right;
+  float: right;
 }
 
 .dino {
-    border: 1px solid #ddd;
-    display: flex;
-    align-items: center;
-    padding: 0.75rem 1.25rem;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.25rem;
+  transition: 0.25s;
 }
 
 .dino + .dino {
-    border-top: none;
+  border-top: none;
 }
 
 .dino-name {
-    flex-grow:1;
+  flex-grow: 1;
 }
 
 .actions.button-group {
-    margin-bottom: 0;
+  margin-bottom: 0;
+}
+
+.dino.fav {
+  background-color: #ffc656;
+  border-color: #ffa807;
 }
