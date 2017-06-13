@@ -24,6 +24,21 @@
     border: 1px solid green;
 }*/
 
+@import url('https://fonts.googleapis.com/css?family=Modak');
+
+h1 {
+  font-family: Modak, cursive;
+  text-transform: lowercase;
+}
+
+h1 span {
+  color: #cc4b37;
+}
+
+ul.dino-list {
+  margin: 0;
+}
+
 .dino.template {
   display: none;
 }
@@ -33,15 +48,15 @@
 }
 
 .dino {
-  border: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   display: flex;
   align-items: center;
   padding: 0.75rem 1.25rem;
   transition: 0.25s;
 }
 
-.dino + .dino {
-  border-top: none;
+.dino:last-child {
+  border-bottom: 0;
 }
 
 .dino-name {
@@ -52,10 +67,6 @@
   text-overflow: ellipsis;
 }
 
-.dino-diet {
-  margin-right: 1rem;
-}
-
 .actions.button-group {
   margin-bottom: 0;
   white-space: nowrap;
@@ -63,6 +74,11 @@
 
 .actions .button {
   padding: 0.65em 0.8em;
+  transition: 0.25s;
+}
+
+.actions .button:hover {
+  transform: scale(1.1);
 }
 
 .dino.fav {
@@ -75,4 +91,29 @@
   background-color: #ddd;
   color: #eee;
   cursor: not-allowed;
+}
+
+.tabs-panel {
+  padding: 0;
+}
+
+#diets {
+  position: relative;
+}
+
+li.search {
+  position: absolute;
+  right: 0;
+  padding-top: 0.4rem;
+  padding-right: 1rem;
+  width: 40%;
+}
+li.search input {
+  margin: 0;
+}
+li.search .input-group-label {
+  color: #999;
+}
+li.search .input-group {
+  margin: 0;
 }
